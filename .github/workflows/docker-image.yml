@@ -34,11 +34,10 @@ jobs:
         ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
         IMAGE_TAG: ${{ steps.timestamp.outputs.timestamp }}
       run: |
-        # Build and tag with both the timestamp and 'latest'
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+        # Build with timestamp tag only
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         
-        # Push both tags
+        # Push the timestamped tag
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         
-        echo "Image pushed with tags: latest and $IMAGE_TAG"
+        echo "Image pushed with tag: $IMAGE_TAG"
