@@ -1,9 +1,9 @@
 name: Build and Deploy to AWS ECR
 on:
   push:
-    branches: [ main ]
+    branches: [ jellybean ]
   pull_request:
-    branches: [ main ]
+    branches: [ jellybean ]
   workflow_dispatch:
 jobs:
   build-and-deploy:
